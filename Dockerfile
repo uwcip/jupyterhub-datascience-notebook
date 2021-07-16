@@ -5,13 +5,12 @@ LABEL org.opencontainers.image.source=https://github.com/uwcip/jupyterhub-datasc
 
 USER root
 
-# ffmpeg for matplotlib anim & dvipng+cm-super for latex labels
-RUN apt-get -q update && \
+# install updates and dependencies
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get -q update && apt-get -y upgrade && \
+    # ffmpeg for matplotlib anim & dvipng+cm-super for latex labels
     apt-get install -y --no-install-recommends ffmpeg dvipng cm-super && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# tesseract for OCR work
-RUN apt-get -q update && \
+    # tesseract for OCR work
     apt-get install -y --no-install-recommends tesseract-ocr-all && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
