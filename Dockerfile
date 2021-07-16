@@ -83,6 +83,14 @@ RUN conda install --quiet --yes \
     && fix-permissions "/home/${NB_USER}" \
     && true
 
+# install signnet which does not have a conda package at the moment.
+WORKDIR /tmp
+RUN wget --quiet "https://cran.r-project.org/src/contrib/signnet_0.7.1.tar.gz" && \
+    R CMD INSTALL signnet_0.7.1.tar.gz && \
+    rm -rf signnet_0.7.1.tar.gz && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
+
 # install facets which does not have a pip or conda package at the moment.
 # according to the docs this does NOT require a call to "enable" the extension.
 WORKDIR /tmp
