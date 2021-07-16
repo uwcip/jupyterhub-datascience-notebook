@@ -76,7 +76,7 @@ RUN conda install --quiet --yes \
     "sympy=1.8.*" \
     "widgetsnbextension=3.5.*" \
     "xlrd=2.0.*" \
-    "psycopg2=2.8.*" \
+    "psycopg2=2.9.*" \
     && conda clean --all -f -y \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}" \
