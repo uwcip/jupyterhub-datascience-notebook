@@ -1,4 +1,4 @@
-FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.0.0
+FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.1.0
 
 # github metadata
 LABEL org.opencontainers.image.source=https://github.com/uwcip/jupyterhub-datascience-notebook
