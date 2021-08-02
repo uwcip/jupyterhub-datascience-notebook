@@ -1,4 +1,4 @@
-FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.1.0
+FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.2.0
 
 # github metadata
 LABEL org.opencontainers.image.source=https://github.com/uwcip/jupyterhub-datascience-notebook
@@ -35,9 +35,9 @@ RUN conda install --quiet --yes \
     "r-shiny=1.6*" \
     "r-tidymodels=0.1*" \
     "r-tidyverse=1.3*" \
+    "unixodbc=2.3.*" \
     "r-statnet=2019.*" \
     "rpy2=3.4*" \
-    "unixodbc=2.3.*" \
     "r-stm=1.3*" \
     "r-rpostgres=1.3.*" \
     "r-igraph=1.2*" \
@@ -121,7 +121,7 @@ RUN pip install --no-cache-dir \
     "dateparser==1.0.*" \
     "gensim==4.0.*" \
     "nx_altair==0.1.*" \
-    "plotly==4.14.*" \
+    "plotly==5.1.*" \
     "cufflinks==0.17.*" \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}" \
