@@ -123,6 +123,7 @@ RUN pip install --no-cache-dir \
     "nx_altair" \
     "plotly" \
     "cufflinks" \
+    "transformers[torch]" \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}" \
     && true
