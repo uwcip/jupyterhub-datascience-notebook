@@ -1,4 +1,4 @@
-FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.2.1
+FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.2.2
 
 # github metadata
 LABEL org.opencontainers.image.source=https://github.com/uwcip/jupyterhub-datascience-notebook
@@ -78,6 +78,7 @@ RUN conda install --quiet --yes \
     "widgetsnbextension" \
     "xlrd" \
     "psycopg2" \
+    "tensorflow" \
     && conda clean --all -f -y \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}" \
