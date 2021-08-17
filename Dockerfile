@@ -16,6 +16,9 @@ RUN apt-get -q update && apt-get -y upgrade && \
 
 USER ${NB_UID}
 
+# make conda solving faster
+RUN conda config --set channel_priority strict
+
 # install R and some libraries
 RUN conda install --quiet --yes \
     "r-base"  \
@@ -50,6 +53,7 @@ RUN conda install --quiet --yes \
 # install Python3 packages
 RUN conda install --quiet --yes \
     "altair" \
+    "arviz" \
     "beautifulsoup4" \
     "bokeh" \
     "bottleneck" \
@@ -57,17 +61,26 @@ RUN conda install --quiet --yes \
     "conda-forge::blas=*=openblas" \
     "cython" \
     "dask" \
+    "dateparser" \
     "dill" \
+    "gensim" \
     "h5py" \
     "ipympl"\
     "ipywidgets" \
     "matplotlib-base" \
+    "nltk" \
     "numba" \
     "numexpr" \
     "pandas" \
     "patsy" \
+    "plotly" \
     "protobuf" \
+    "psycopg2" \
+    "pymc3" \
+    "pystan" \
     "pytables" \
+    "python-cufflinks" \
+    "pytorch" \
     "scikit-image" \
     "scikit-learn" \
     "scipy" \
@@ -75,10 +88,14 @@ RUN conda install --quiet --yes \
     "sqlalchemy" \
     "statsmodels" \
     "sympy" \
-    "widgetsnbextension" \
-    "xlrd" \
-    "psycopg2" \
+    "tabulate" \
     "tensorflow" \
+    "textblob" \
+    "transformers" \
+    "vadersentiment" \
+    "widgetsnbextension" \
+    "wordcloud" \
+    "xlrd" \
     && conda clean --all -f -y \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}" \
@@ -105,29 +122,6 @@ RUN git clone https://github.com/PAIR-code/facets.git && \
 ENV XDG_CACHE_HOME="/home/${NB_USER}/.cache/"
 RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
     fix-permissions "/home/${NB_USER}"
-
-# install additional pip packages. be careful adding things here that might
-# disrupt other versions. (for example, adding tensorflow currently downgrades
-# numpy so avoid adding tensorflow for now.)
-RUN pip install --no-cache-dir \
-    "nltk" \
-    "vaderSentiment" \
-    "line-profiler" \
-    "pystan<3" \
-    "pymc3" \
-    "arviz" \
-    "wordcloud" \
-    "textblob" \
-    "tabulate" \
-    "dateparser" \
-    "gensim" \
-    "nx_altair" \
-    "plotly" \
-    "cufflinks" \
-    "transformers[torch]" \
-    && fix-permissions "${CONDA_DIR}" \
-    && fix-permissions "/home/${NB_USER}" \
-    && true
 
 # ensure that we run the container as the notebook user
 USER ${NB_UID}
