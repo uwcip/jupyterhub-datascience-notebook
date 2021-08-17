@@ -16,11 +16,8 @@ RUN apt-get -q update && apt-get -y upgrade && \
 
 USER ${NB_UID}
 
-# make conda solving faster
-RUN conda config --set channel_priority strict
-
 # install R and some libraries
-RUN conda install --quiet --yes \
+RUN mamba install --quiet --yes \
     "r-base"  \
     "r-caret" \
     "r-crayon" \
@@ -45,20 +42,20 @@ RUN conda install --quiet --yes \
     "r-rpostgres" \
     "r-igraph" \
     "r-rgexf" \
-    && conda clean --all -f -y \
+    && mamba clean --all -f -y \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}" \
     && true
 
 # install Python3 packages
-RUN conda install --quiet --yes \
+RUN mamba install --quiet --yes \
     "altair" \
     "arviz" \
     "beautifulsoup4" \
     "bokeh" \
     "bottleneck" \
     "cloudpickle" \
-    "conda-forge::blas=*=openblas" \
+    "openblas" \
     "cython" \
     "dask" \
     "dateparser" \
@@ -96,7 +93,7 @@ RUN conda install --quiet --yes \
     "widgetsnbextension" \
     "wordcloud" \
     "xlrd" \
-    && conda clean --all -f -y \
+    && mamba clean --all -f -y \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}" \
     && true
