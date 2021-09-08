@@ -1,4 +1,4 @@
-FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.3.1
+FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.3.2
 
 # github metadata
 LABEL org.opencontainers.image.source=https://github.com/uwcip/jupyterhub-datascience-notebook
@@ -22,6 +22,7 @@ RUN mamba install --quiet --yes \
     "r-caret" \
     "r-crayon" \
     "r-devtools" \
+    "r-e1071" \
     "r-forecast" \
     "r-hexbin" \
     "r-htmltools" \
