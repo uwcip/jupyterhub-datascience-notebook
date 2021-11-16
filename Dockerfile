@@ -77,7 +77,7 @@ RUN mamba install --quiet --yes \
     "protobuf" \
     "psycopg2" \
     "pymc3" \
-    "pystan" \
+    "pystan<3" \
     "pytables" \
     "python-cufflinks" \
     "pytorch" \
