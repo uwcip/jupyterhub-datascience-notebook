@@ -92,6 +92,7 @@ RUN mamba install --quiet --yes \
     "tensorflow" \
     "textblob" \
     "transformers" \
+    "umap-learn" \
     "vadersentiment" \
     "widgetsnbextension" \
     "wordcloud" \
