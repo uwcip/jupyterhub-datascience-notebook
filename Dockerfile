@@ -12,6 +12,8 @@ RUN apt-get -q update && apt-get -y upgrade && \
     apt-get install -y --no-install-recommends ffmpeg dvipng cm-super && \
     # tesseract for OCR work
     apt-get install -y --no-install-recommends tesseract-ocr-all && \
+    # Java for Spark
+    apt-get install -y --no-install-recommends default-jdk && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 USER ${NB_UID}
@@ -77,7 +79,9 @@ RUN mamba install --quiet --yes \
     "plotly" \
     "protobuf" \
     "psycopg2" \
+    "pyarrow" \
     "pymc3" \
+    "pyspark" \
     "pystan<3" \
     "pytables" \
     "python-cufflinks" \
