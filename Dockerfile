@@ -14,6 +14,8 @@ RUN apt-get -q update && apt-get -y upgrade && \
     apt-get install -y --no-install-recommends tesseract-ocr-all && \
     # Java for Spark
     apt-get install -y --no-install-recommends default-jdk && \
+    # NLopt (non-linear optmization) package
+    apt-get install -y --no-install-recommends libnlopt-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 USER ${NB_UID}
