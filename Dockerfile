@@ -73,6 +73,7 @@ RUN mamba install --quiet --yes \
     "ipympl"\
     "ipywidgets" \
     "matplotlib-base" \
+    "nlopt" \
     "nltk" \
     "numba" \
     "numexpr" \
