@@ -1,4 +1,4 @@
-FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.8.1
+FROM ghcr.io/uwcip/jupyterhub-base-notebook:v1.8.3
 
 # github metadata
 LABEL org.opencontainers.image.source=https://github.com/uwcip/jupyterhub-datascience-notebook
@@ -21,7 +21,7 @@ RUN apt-get -q update && apt-get -y upgrade && \
 USER ${NB_UID}
 
 # install R and some libraries
-RUN mamba install --quiet --yes \
+RUN conda install --quiet --yes \
     "r-base"  \
     "r-caret" \
     "r-crayon" \
@@ -50,13 +50,13 @@ RUN mamba install --quiet --yes \
     "r-cowplot" \
     "r-webshot" \
     "r-arrow" \
-    && mamba clean --all -f -y \
+    && conda clean --all -f -y \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}" \
     && true
 
 # install Python3 packages
-RUN mamba install --quiet --yes \
+RUN conda install --quiet --yes \
     "altair" \
     "arviz" \
     "beautifulsoup4" \
@@ -105,7 +105,7 @@ RUN mamba install --quiet --yes \
     "widgetsnbextension" \
     "wordcloud" \
     "xlrd" \
-    && mamba clean --all -f -y \
+    && conda clean --all -f -y \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}" \
     && true
