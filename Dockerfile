@@ -57,53 +57,53 @@ RUN conda install --quiet --yes \
 
 # install Python3 packages
 RUN conda install --quiet --yes \
-    "altair" \
+#     "altair" \
     "arviz" \
-    "beautifulsoup4" \
+#     "beautifulsoup4" \
     "bokeh" \
-    "bottleneck" \
-    "cloudpickle" \
-    "openblas" \
-    "cython" \
-    "dask" \
+#     "bottleneck" \
+#     "cloudpickle" \
+#     "openblas" \
+#     "cython" \
+#     "dask" \
     "dateparser" \
-    "dill" \
-    "gensim" \
-    "h5py" \
-    "ipympl"\
-    "ipywidgets" \
+#     "dill" \
+#     "gensim" \
+#     "h5py" \
+#     "ipympl"\
+#     "ipywidgets" \
     "matplotlib-base" \
     "nlopt" \
     "nltk" \
     "numba" \
     "numexpr" \
     "pandas" \
-    "patsy" \
+#     "patsy" \
     "plotly" \
     "protobuf" \
     "psycopg2" \
     "pyarrow" \
     "pymc3" \
     "pyspark" \
-    "pystan<3" \
-    "pytables" \
-    "python-cufflinks" \
-    "pytorch" \
-    "scikit-image" \
+#     "pystan<3" \
+#     "pytables" \
+#     "python-cufflinks" \
+#     "pytorch" \
+#     "scikit-image" \
     "scikit-learn" \
     "scipy" \
     "seaborn" \
     "sqlalchemy" \
     "statsmodels" \
-    "sympy" \
-    "tabulate" \
-    "tensorflow" \
-    "textblob" \
+#     "sympy" \
+#     "tabulate" \
+#     "tensorflow" \
+#     "textblob" \
     "transformers" \
     "umap-learn" \
     "vadersentiment" \
-    "widgetsnbextension" \
-    "wordcloud" \
+#     "widgetsnbextension" \
+#     "wordcloud" \
     "xlrd" \
     && conda clean --all -f -y \
     && fix-permissions "${CONDA_DIR}" \
@@ -112,9 +112,9 @@ RUN conda install --quiet --yes \
 
 # install signnet which does not have a conda package at the moment.
 WORKDIR /tmp
-RUN wget --quiet "https://cran.r-project.org/src/contrib/signnet_0.8.0.tar.gz" && \
-    R CMD INSTALL signnet_0.8.0.tar.gz && \
-    rm -rf signnet_0.8.0.tar.gz && \
+RUN wget --quiet "https://cran.r-project.org/src/contrib/signnet_0.8.1.tar.gz" && \
+    R CMD INSTALL signnet_0.8.1.tar.gz && \
+    rm -rf signnet_0.8.1.tar.gz && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
