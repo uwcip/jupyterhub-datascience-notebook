@@ -1,4 +1,5 @@
 ## datascience notebook
+## [In the process of cleaning it up]
 
 This container builds a pretty heavyweight image for doing "data science" in
 JupyterHub. You should use this container in a JupyterHub installation. It
