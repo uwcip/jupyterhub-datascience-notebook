@@ -73,6 +73,7 @@ RUN conda install --quiet --yes \
 #     "ipympl"\
 #     "ipywidgets" \
     "matplotlib-base" \
+    "networkx" \
     "nlopt" \
     "nltk" \
     "numba" \
