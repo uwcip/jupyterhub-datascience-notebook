@@ -8,7 +8,6 @@ USER root
 # install updates and dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -q update && apt-get -y upgrade && \
-    apt-get install -y --no-install-recommends coreutils &&\
     # ffmpeg for matplotlib anim & dvipng+cm-super for latex labels
     apt-get install -y --no-install-recommends ffmpeg dvipng cm-super && \
     # tesseract for OCR work
