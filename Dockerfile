@@ -8,6 +8,7 @@ USER root
 # install updates and dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -q update && apt-get -y upgrade && \
+    apt-get install -y --no-install-recommends coreutils &&\
     # ffmpeg for matplotlib anim & dvipng+cm-super for latex labels
     apt-get install -y --no-install-recommends ffmpeg dvipng cm-super && \
     # tesseract for OCR work
@@ -129,8 +130,9 @@ RUN git clone https://github.com/PAIR-code/facets.git && \
     fix-permissions "/home/${NB_USER}"
 
 # install datapy to access databricks
-RUN --mount=type=secret,id=PYPI_PASSWORD \
-pip install --extra-index-url=https://$(cat /run/secrets/PYPI_PASSWORD)@pkgs.dev.azure.com/uwcip/uwcip/_packaging/uwcip-pypi-dev/pypi/simple datapy
+RUN pip install --upgrade pip
+RUN --mount=type=secret,id=PYPI_PASSWORD,uid=${NB_UID} pip install --extra-index-url=https://$(cat /run/secrets/PYPI_PASSWORD)@pkgs.dev.azure.com/uwcip/uwcip/_packaging/uwcip-pypi-dev/pypi/simple datapy && \
+fix-permissions "${CONDA_DIR}" && fix-permissions "/home/${NB_USER}"
 
 # import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME="/home/${NB_USER}/.cache/"
